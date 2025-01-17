@@ -2,10 +2,14 @@ import express from "express";
 const routerAdmin = express.Router();
 import carController from "./controller/Car.controller";
 
-routerAdmin.get("/admin", carController.goHome);
+routerAdmin.get("/", carController.goHome);
 
-routerAdmin.get("/admin/signup", carController.signUp);
+routerAdmin
+  .get("/login", carController.logIn)
+  .post("/login", carController.processLogin);
 
-routerAdmin.get("/admin/login", carController.logIn);
+routerAdmin
+  .get("/signup", carController.signUp)
+  .post("/signup", carController.processSignup);
 
 export default routerAdmin;

@@ -1,3 +1,5 @@
-class MemberService {}
+class MemberService {
+  constructor() {}
+}
 
 export default MemberService;

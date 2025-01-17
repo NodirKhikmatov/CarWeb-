@@ -5,7 +5,7 @@ const memberController: T = {};
 
 memberController.goHome = (req: Request, res: Response) => {
   try {
-    res.send("HomePage");
+    res.send("HomePage member");
   } catch (err) {
     console.log("Error: ", err);
   }

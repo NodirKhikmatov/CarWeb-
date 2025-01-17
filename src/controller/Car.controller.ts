@@ -1,11 +1,31 @@
 import { T } from "../libs/types/common";
 import { Request, Response } from "express";
+import MemberService from "../models/Member.service";
 
 const carController: T = {};
 
 carController.goHome = (req: Request, res: Response) => {
   try {
+    console.log("goHome ");
+
     res.send("HomePage");
+  } catch (err) {
+    console.log("Error: ", err);
+  }
+};
+carController.logIn = (req: Request, res: Response) => {
+  try {
+    console.log("logIn");
+    res.send("loginPage ");
+  } catch (err) {
+    console.log("Error: ", err);
+  }
+};
+
+carController.processLogin = (req: Request, res: Response) => {
+  try {
+    console.log("processLogin");
+    res.send("Done");
   } catch (err) {
     console.log("Error: ", err);
   }
@@ -13,15 +33,17 @@ carController.goHome = (req: Request, res: Response) => {
 
 carController.signUp = (req: Request, res: Response) => {
   try {
-    res.send("SignUpPage");
+    console.log("signUp");
+    res.send("SignUpPage ");
   } catch (err) {
     console.log("Error: ", err);
   }
 };
 
-carController.logIn = (req: Request, res: Response) => {
+carController.processSignup = (req: Request, res: Response) => {
   try {
-    res.send("loginPage");
+    console.log("processSignup");
+    res.send("Done processSignup ");
   } catch (err) {
     console.log("Error: ", err);
   }
