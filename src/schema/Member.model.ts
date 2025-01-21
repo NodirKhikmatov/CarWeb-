@@ -4,7 +4,7 @@ import mongoose, { Schema } from "mongoose";
 const memberSchema = new Schema(
   {
     memberType: {
-      type: string,
+      type: String,
       enum: MemberType,
       default: MemberType.USER,
     },

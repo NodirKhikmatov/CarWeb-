@@ -1,6 +1,8 @@
+import { MemberInput } from "./../libs/types/member";
 import { T } from "../libs/types/common";
 import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
+import { MemberType } from "../libs/enums/member.enum";
 
 const carController: T = {};
 
@@ -40,12 +42,19 @@ carController.signUp = (req: Request, res: Response) => {
   }
 };
 
-carController.processSignup = (req: Request, res: Response) => {
+carController.processSignup = async (req: Request, res: Response) => {
   try {
     console.log("processSignup");
-    res.send("Done processSignup ");
+    console.log("body", req.body);
+    const newMember: MemberInput = req.body;
+    newMember.memberType = MemberType.CAR;
+
+    const memberService = new MemberService();
+    const result = await memberService.processSignup(newMember);
+    res.send(result);
   } catch (err) {
     console.log("Error: ", err);
+    res.send(err);
   }
 };
 
