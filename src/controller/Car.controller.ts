@@ -1,4 +1,5 @@
-import { MemberInput } from "./../libs/types/member";
+import { MemberInput, LoginInput } from "./../libs/types/member";
+
 import { T } from "../libs/types/common";
 import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
@@ -24,15 +25,6 @@ carController.logIn = (req: Request, res: Response) => {
   }
 };
 
-carController.processLogin = (req: Request, res: Response) => {
-  try {
-    console.log("processLogin");
-    res.send("Done");
-  } catch (err) {
-    console.log("Error: ", err);
-  }
-};
-
 carController.signUp = (req: Request, res: Response) => {
   try {
     console.log("signUp");
@@ -42,10 +34,28 @@ carController.signUp = (req: Request, res: Response) => {
   }
 };
 
+carController.processLogin = async (req: Request, res: Response) => {
+  try {
+    console.log("processLogin");
+    console.log("req", req.body);
+
+    const input: LoginInput = req.body;
+
+    const memberService = new MemberService();
+    const result = await memberService.processLogin(input);
+
+    res.send(result);
+  } catch (err) {
+    console.log("Error: ", err);
+    res.send(err);
+  }
+};
+
 carController.processSignup = async (req: Request, res: Response) => {
   try {
     console.log("processSignup");
     console.log("body", req.body);
+
     const newMember: MemberInput = req.body;
     newMember.memberType = MemberType.CAR;
 
