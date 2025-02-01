@@ -7,6 +7,8 @@ import { MemberType } from "../libs/enums/member.enum";
 
 const carController: T = {};
 
+const memberService = new MemberService();
+
 carController.goHome = (req: Request, res: Response) => {
   try {
     console.log("goHome ");
@@ -39,10 +41,8 @@ carController.processLogin = async (req: Request, res: Response) => {
     console.log("processLogin");
     console.log("req", req.body);
 
-    const input: LoginInput = req.body;
-
-    const memberService = new MemberService();
-    const result = await memberService.processLogin(input);
+    const input: LoginInput = req.body,
+      result = await memberService.processLogin(input);
 
     res.send(result);
   } catch (err) {
@@ -59,7 +59,6 @@ carController.processSignup = async (req: Request, res: Response) => {
     const newMember: MemberInput = req.body;
     newMember.memberType = MemberType.CAR;
 
-    const memberService = new MemberService();
     const result = await memberService.processSignup(newMember);
     res.send(result);
   } catch (err) {
