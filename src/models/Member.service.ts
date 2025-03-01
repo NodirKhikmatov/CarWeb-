@@ -44,7 +44,7 @@ class MemberService {
     return await this.memberModel.findById(member._id).lean().exec();
   }
 
-  //bss
+  //ssr
   public async processLogin(input: LoginInput): Promise<Member> {
     const member = await this.memberModel
       .findOne(

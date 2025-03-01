@@ -1,5 +1,4 @@
 import { MemberInput, LoginInput } from "./../libs/types/member";
-
 import { T } from "../libs/types/common";
 import { Request, Response } from "express";
 import MemberService from "../models/Member.service";
@@ -13,7 +12,7 @@ carController.goHome = (req: Request, res: Response) => {
   try {
     console.log("goHome ");
 
-    res.send("HomePage");
+    res.render("home");
   } catch (err) {
     console.log("Error: ", err);
   }
@@ -21,7 +20,7 @@ carController.goHome = (req: Request, res: Response) => {
 carController.logIn = (req: Request, res: Response) => {
   try {
     console.log("logIn");
-    res.send("loginPage ");
+    res.render("login");
   } catch (err) {
     console.log("Error: ", err);
   }
@@ -30,7 +29,7 @@ carController.logIn = (req: Request, res: Response) => {
 carController.signUp = (req: Request, res: Response) => {
   try {
     console.log("signUp");
-    res.send("SignUpPage ");
+    res.render("signup");
   } catch (err) {
     console.log("Error: ", err);
   }
