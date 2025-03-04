@@ -12,7 +12,7 @@ const memberService = new MemberService();
 
 carController.goHome = (req: Request, res: Response) => {
   try {
-    console.log("goHome ");
+    console.log("goHome");
 
     res.render("home");
   } catch (err) {
@@ -28,12 +28,23 @@ carController.logIn = (req: Request, res: Response) => {
   }
 };
 
+carController.logout = (req: AdminRequest, res: Response) => {
+  try {
+    req.session.destroy(function () {
+      res.redirect("/admin");
+    });
+  } catch (err) {
+    console.log("Error: ", err);
+  }
+};
+
 carController.signUp = (req: Request, res: Response) => {
   try {
     console.log("signUp");
     res.render("signup");
   } catch (err) {
     console.log("Error: ", err);
+    res.redirect("/admin");
   }
 };
 

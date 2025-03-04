@@ -8,6 +8,8 @@ routerAdmin
   .get("/login", carController.logIn)
   .post("/login", carController.processLogin);
 
+routerAdmin.get("/logout", carController.logout);
+
 routerAdmin
   .get("/signup", carController.signUp)
   .post("/signup", carController.processSignup);
