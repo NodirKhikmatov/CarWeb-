@@ -1,6 +1,63 @@
+<%- include('includes/header') %>
 
-  <%- include("includes/header") %>
-  <body>
-    <div style="font-size: large">helo</div>
-  </body>
-</html>
+<link rel="stylesheet" type="text/css" href="/css/home.css" />
+
+<body>
+  <div class="home-container">
+    <div class="navigation-menu">
+      <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link active" href="/admin">Home</a>
+        </li>
+        <% if (!member) { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/signup">Signup</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/login">Login</a>
+        </li>
+        <% } else { %>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/product/all">Menu</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/admin/user/all">Users</a>
+        </li>
+        <li class="nav-item" onclick="return confirm('Do you want to logout?')">
+          <a class="nav-link" href="/admin/logout">Logout</a>
+        </li>
+        <% } %>
+      </ul>
+    </div>
+
+    <!-- Animation Container -->
+    <div class="container">
+      <% for (let i = 0; i < 400; i++) { %>
+      <div class="trigger"></div>
+      <% } %>
+
+      <div class="monitor">
+        <div class="camera o-y">
+          <div class="camera o-x">
+            <div class="vr">
+              <% const size = 350; const layer = 20; %> <% for (let i = 0; i <
+              layer; i++) { const z = i * size / layer - size / 2; const delay =
+              i * -210; %>
+              <div class="vr_layer" style="transform: translateZ(<%= z %>px)">
+                <div
+                  class="vr_layer_item"
+                  style="animation-delay: <%= delay %>ms"
+                ></div>
+              </div>
+              <% } %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="/js/home.js"></script>
+</body>
+
+<%- include('includes/footer') %>

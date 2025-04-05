@@ -1,7 +1,7 @@
 import { MemberType } from "./../libs/enums/member.enum";
 
 import Errors, { HttpCode, Message } from "../libs/errors";
-import { Member, MemberInput, LoginInput } from "../libs/types/member";
+import { Member, MemberInput, LoginInput } from '../libs/types/member';
 import MemberModel from "../schema/Member.model";
 import * as bcrypt from "bcryptjs";
 class MemberService {
@@ -81,6 +81,16 @@ class MemberService {
     } catch (err) {
       throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     }
+  }
+
+  public async getUsers(): Promise<Member[]> {
+    const result = await this.memberModel
+      .find({ memberType: MemberType.USER })
+      .exec();
+
+    if (!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND);
+
+    return result;
   }
 }
 export default MemberService;

@@ -37,4 +37,8 @@ routerAdmin
   )
   .post("/product/:id", productController.updateChosenProduct);
 
+/*USER */
+
+routerAdmin.get("/user/all", carController.verifyCar, carController.getUsers);
+
 export default routerAdmin;

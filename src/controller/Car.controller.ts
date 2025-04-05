@@ -93,6 +93,29 @@ carController.processSignup = async (req: AdminRequest, res: Response) => {
   }
 };
 
+//getusers
+
+carController.getUsers = async (req: Request, res: Response) => {
+  try {
+    console.log("getUsers");
+
+    const result = await memberService.getUsers();
+
+    res.render("users", { users: result });
+  } catch (err) {
+    console.log("err: getUsers:", err);
+    res.redirect("/admin/login");
+  }
+};
+
+carController.updateChosenUser = async (req: Request, res: Response) => {
+  try {
+    console.log("updateChosenUser");
+  } catch (err) {
+    console.log("err: updateChosenUser:", err);
+  }
+};
+
 carController.verifyCar = (
   req: AdminRequest,
   res: Response,
