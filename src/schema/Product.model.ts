@@ -8,9 +8,9 @@ import {
 const productSchema = new Schema(
   {
     productStatus: {
-      type: String,
+      type: Number,
       enum: ProductStatus,
-      default: ProductStatus.PAUSE,
+      default: ProductStatus.AVAILABLE,
     },
     productCollection: {
       type: String,
@@ -33,12 +33,12 @@ const productSchema = new Schema(
     productSize: {
       type: String,
       enum: ProductSize,
-      default: ProductSize.NORMAL,
+      default: ProductSize.COMPACT,
     },
     productVolume: {
-      type: Number,
+      type: String,
       enum: ProductVolume,
-      default: ProductVolume.ONE,
+      default: ProductVolume.SUBCOMPACT,
     },
     productDesc: {
       type: String,

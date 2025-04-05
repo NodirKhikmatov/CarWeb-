@@ -1,28 +1,30 @@
 export enum ProductSize {
-  SMALL = "SMALL",
-  NORMAL = "NORMAL",
-  LARGE = "LARGE",
-  SET = "SET",
+  COMPACT = "COMPACT",
+  MIDSIZE = "MIDSIZE",
+  FULLSIZE = "FULLSIZE",
+  TRUCK = "TRUCK",
+  SPORT = "SPORT",
 }
 
 export enum ProductVolume {
-  HALF = 0.5,
-  ONE = 1,
-  ONE_POINT_TWO = 1.2,
-  ONE_POINT_FIVE = 1.5,
-  two = 2,
+  SUBCOMPACT = "SUBCOMPACT",
+  COMPACT = "COMPACT",
+  MIDSIZE = "MIDSIZE",
+  LARGE = "LARGE",
 }
 
 export enum ProductStatus {
-  PAUSE = "PAUSE",
-  PROCESS = "PROCESS",
-  DELETE = "DELETE",
+  AVAILABLE = 1,
+  RENTED = 2,
+  IN_SERVICE = 3,
+  DAMAGED = 4,
+  RETIRED = 5,
 }
 
 export enum ProductCollection {
-  DISH = "DISH",
-  SALAD = "SALAD",
-  DESERT = "DESERT",
-  DRINK = "DRINK",
-  OTHER = "OTHER",
+  SEDAN = "SEDAN",
+  SUV = "SUV",
+  COUPE = "COUPE",
+  CONVERTIBLE = "CONVERTIBLE",
+  TRUCK = "TRUCK",
 }
