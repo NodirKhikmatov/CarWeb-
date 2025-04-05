@@ -18,7 +18,7 @@ routerAdmin
   .get("/signup", carController.signUp)
   .post(
     "/signup",
-    makeUploader("members").single("memberImage"),
+    makeUploader("members").array("memberImages "),
     carController.processSignup
   );
 
@@ -32,7 +32,7 @@ routerAdmin
   .post(
     "/product/create",
     carController.verifyCar,
-    makeUploader("products").single("productImage"),
+    makeUploader("products").array("productImages"),
     productController.createNewProduct
   )
   .post("/product/:id", productController.updateChosenProduct);

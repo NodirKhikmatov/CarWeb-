@@ -5,7 +5,8 @@ import MemberService from "../models/Member.service";
 import { MemberType } from "../libs/enums/member.enum";
 import session from "express-session";
 import { AdminRequest } from "../libs/types/member";
-import { Message } from "../libs/errors";
+import { Message, HttpCode } from "../libs/errors";
+import Errors from "../libs/errors";
 
 const carController: T = {};
 
@@ -59,7 +60,7 @@ carController.processLogin = async (req: AdminRequest, res: Response) => {
 
     req.session.member = result;
     req.session.save(function () {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error: ", err);
@@ -70,16 +71,21 @@ carController.processLogin = async (req: AdminRequest, res: Response) => {
 carController.processSignup = async (req: AdminRequest, res: Response) => {
   try {
     console.log("processSignup");
-    console.log("body", req.body);
+    const file = req.file;
+    if (!file) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
 
     const newMember: MemberInput = req.body;
+    newMember.memberImage = file?.path;
+
     newMember.memberType = MemberType.CAR;
+
     const result = await memberService.processSignup(newMember);
 
     //todo session authentication
+
     req.session.member = result;
     req.session.save(function () {
-      res.send(result);
+      res.redirect("/admin/product/all");
     });
   } catch (err) {
     console.log("Error: ", err);
