@@ -1,7 +1,7 @@
 import { MemberType } from "./../libs/enums/member.enum";
 
 import Errors, { HttpCode, Message } from "../libs/errors";
-import { Member, MemberInput, LoginInput } from '../libs/types/member';
+import { Member, MemberInput, LoginInput } from "../libs/types/member";
 import MemberModel from "../schema/Member.model";
 import * as bcrypt from "bcryptjs";
 class MemberService {
@@ -71,6 +71,7 @@ class MemberService {
     const exist = await this.memberModel
       .findOne({ memberType: MemberType.CAR })
       .exec();
+
     if (exist) throw new Errors(HttpCode.BAD_REQUEST, Message.CREATE_FAILED);
     const salt = await bcrypt.genSalt();
     input.memberPassword = await bcrypt.hash(input.memberPassword, salt);

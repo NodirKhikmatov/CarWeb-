@@ -5,16 +5,17 @@ import {
   ProductCollection,
   ProductStatus,
 } from "../libs/enums/product.enum";
+
 const productSchema = new Schema(
   {
     productStatus: {
-      type: Number,
-      enum: ProductStatus,
+      type: String, // Changed from Number to String to align with your enum values
+      enum: Object.values(ProductStatus),
       default: ProductStatus.AVAILABLE,
     },
     productCollection: {
       type: String,
-      enum: ProductCollection,
+      enum: Object.values(ProductCollection),
       required: true,
     },
 
@@ -26,18 +27,15 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
-    productLeftCount: {
-      type: Number,
-      required: true,
-    },
+
     productSize: {
       type: String,
-      enum: ProductSize,
+      enum: Object.values(ProductSize),
       default: ProductSize.COMPACT,
     },
     productVolume: {
       type: String,
-      enum: ProductVolume,
+      enum: Object.values(ProductVolume),
       default: ProductVolume.SUBCOMPACT,
     },
     productDesc: {
@@ -52,11 +50,15 @@ const productSchema = new Schema(
       default: 0,
     },
   },
-  { timestamps: true } //createdAt, UpdatedAt);
+  { timestamps: true }
 );
 
 productSchema.index(
   { productName: 1, productSize: 1, productVolume: 1 },
   { unique: true }
 );
+
 export default mongoose.model("Product", productSchema);
+
+
+

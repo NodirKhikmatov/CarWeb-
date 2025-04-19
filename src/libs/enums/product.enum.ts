@@ -1,3 +1,21 @@
+// product.enum.ts
+export enum ProductStatus {
+  PAUSE = "PAUSE",
+  AVAILABLE = "AVAILABLE",
+  RENTED = "RENTED",
+  IN_SERVICE = "IN_SERVICE",
+  DAMAGED = "DAMAGED",
+  RETIRED = "RETIRED",
+}
+
+export enum ProductCollection {
+  SEDAN = "SEDAN",
+  SUV = "SUV",
+  COUPE = "COUPE",
+  CONVERTIBLE = "CONVERTIBLE",
+  TRUCK = "TRUCK",
+}
+
 export enum ProductSize {
   COMPACT = "COMPACT",
   MIDSIZE = "MIDSIZE",
@@ -11,20 +29,4 @@ export enum ProductVolume {
   COMPACT = "COMPACT",
   MIDSIZE = "MIDSIZE",
   LARGE = "LARGE",
-}
-
-export enum ProductStatus {
-  AVAILABLE = 1,
-  RENTED = 2,
-  IN_SERVICE = 3,
-  DAMAGED = 4,
-  RETIRED = 5,
-}
-
-export enum ProductCollection {
-  SEDAN = "SEDAN",
-  SUV = "SUV",
-  COUPE = "COUPE",
-  CONVERTIBLE = "CONVERTIBLE",
-  TRUCK = "TRUCK",
 }

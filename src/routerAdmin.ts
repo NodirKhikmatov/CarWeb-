@@ -18,7 +18,7 @@ routerAdmin
   .get("/signup", carController.signUp)
   .post(
     "/signup",
-    makeUploader("members").array("memberImages "),
+    makeUploader("members").single("memberImage"),
     carController.processSignup
   );
 
