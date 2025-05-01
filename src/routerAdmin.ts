@@ -1,8 +1,8 @@
-import express from "express";
-const routerAdmin = express.Router();
 import carController from "./controller/Car.controller";
-import productController from "./controller/product.controller";
+import express from "express";
 import makeUploader from "./libs/utils/uploader";
+import productController from "./controller/product.controller";
+const routerAdmin = express.Router();
 
 /**Car  */
 

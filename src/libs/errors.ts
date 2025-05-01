@@ -21,6 +21,7 @@ export enum Message {
   BLOCKED_USER = "User is blocked,  please contact Restaurant!",
   USED_NICK_PHONE = "Nick or phone is already used!",
   NOT_AUTHENTICATED = "Please login first!",
+  TOKEN_CREATION_FAILED = "TOKEN_CREATION_FAILED",
 }
 
 //inheritance

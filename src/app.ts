@@ -1,13 +1,13 @@
+import ConnectMongoDB from "connect-mongodb-session";
+import { MORGAN_FORMAT } from "./libs/config";
+import { T } from "./libs/types/common";
+import cookieParser from "cookie-parser";
 import express from "express";
+import morgan from "morgan";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./routerAdmin";
-import morgan from "morgan";
-import { MORGAN_FORMAT } from "./libs/config";
-
 import session from "express-session";
-import ConnectMongoDB from "connect-mongodb-session";
-import { T } from "./libs/types/common";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
@@ -20,6 +20,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.urlencoded({ extended: true })); //htmlni handle qilish tradition api orqali
 app.use(express.json());
+app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 
 /** 2-sessions */
