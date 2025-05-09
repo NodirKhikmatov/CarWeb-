@@ -1,21 +1,21 @@
 import mongoose, { Schema } from "mongoose";
 import {
-  ProductSize,
-  ProductVolume,
   ProductCollection,
+  ProductSize,
   ProductStatus,
-} from "../libs/enums/product.enum";
+  ProductVolume,
+} from "../libs/enum/product.enum";
 
 const productSchema = new Schema(
   {
     productStatus: {
-      type: String, // Changed from Number to String to align with your enum values
-      enum: Object.values(ProductStatus),
-      default: ProductStatus.AVAILABLE,
+      type: String,
+      enum: ProductStatus,
+      default: ProductStatus.PAUSE,
     },
     productCollection: {
       type: String,
-      enum: Object.values(ProductCollection),
+      enum: ProductCollection,
       required: true,
     },
 
@@ -27,16 +27,19 @@ const productSchema = new Schema(
       type: Number,
       required: true,
     },
-
+    productLeftCount: {
+      type: Number,
+      required: true,
+    },
     productSize: {
       type: String,
-      enum: Object.values(ProductSize),
-      default: ProductSize.COMPACT,
+      enum: ProductSize,
+      default: ProductSize.NORMAL,
     },
     productVolume: {
-      type: String,
-      enum: Object.values(ProductVolume),
-      default: ProductVolume.SUBCOMPACT,
+      type: Number,
+      enum: ProductVolume,
+      default: ProductVolume.ONE,
     },
     productDesc: {
       type: String,
@@ -45,20 +48,16 @@ const productSchema = new Schema(
       type: [String],
       default: [],
     },
-    productView: {
+    productViews: {
       type: Number,
       default: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true } //createdAt, UpdatedAt);
 );
 
 productSchema.index(
   { productName: 1, productSize: 1, productVolume: 1 },
   { unique: true }
 );
-
 export default mongoose.model("Product", productSchema);
-
-
-

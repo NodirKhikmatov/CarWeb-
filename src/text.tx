@@ -1,0 +1,29 @@
+/*cookies 
+request join
+self destroy
+
+*/
+////////////////////////////////
+
+res.send | render | redirect | json
+
+
+//VALIDATION
+
+FRONTEND VALIDATION
+PIPE VALIDATION
+BACKEND VALIDATION
+DATABASE VALIDATION
+
+// request:
+Traditional Api (html element form POST)
+Rest Api
+GraphQL Api
+
+
+
+Xususiyat	Cookie	Token (JWT)
+Saqlanish joyi	Brauzer (cookie)	localStorage, sessionStorage, HTTP header
+Avtomatik yuborish	Ha	Yo‘q (faqat HTTP header orqali yuborish kerak)
+Xavfsizlik	CSRF xavfi bor	XSS hujumlariga moyil
+Foydalanish holati	Veb-saytlar	API, SPA (React, Vue), mobil ilovalar

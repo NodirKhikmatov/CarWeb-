@@ -1,52 +1,54 @@
-import { MemberType, MemberStatus } from "../libs/enums/member.enum";
 import mongoose, { Schema } from "mongoose";
+import { MemberStatus, MemberType } from "../libs//enum/member.enum";
 
+//new classlardan object yasash
 const memberSchema = new Schema(
   {
     memberType: {
-      type: String,
+      type: "String",
       enum: MemberType,
       default: MemberType.USER,
     },
 
     memberStatus: {
-      type: String,
+      type: "string",
       enum: MemberStatus,
       default: MemberStatus.ACTIVE,
     },
 
     memberNick: {
-      type: String,
+      type: "string",
       index: { unique: true, sparse: true },
       required: true,
     },
 
     memberPhone: {
-      type: String,
+      type: "string",
       index: { unique: true, sparse: true },
       required: true,
     },
+
     memberPassword: {
-      type: String,
+      type: "string",
       select: false,
       required: true,
     },
-
     memberAddress: {
-      type: String,
+      type: "string",
     },
     memberDesc: {
-      type: String,
+      type: "string",
     },
+
     memberImage: {
-      type: String,
+      type: "string",
     },
     memberPoints: {
       type: Number,
       default: 0,
     },
   },
-  { timestamps: true }
+  { timestamps: true } //createdAt, UpdatedAt
 );
 
 export default mongoose.model("Member", memberSchema);

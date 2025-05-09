@@ -1,9 +1,7 @@
 import Errors, { HttpCode, Message } from "../libs/errors";
-
+import jwt from "jsonwebtoken";
 import { AUTH_TIMER } from "../libs/config";
 import { Member } from "../libs/types/member";
-import jwt from "jsonwebtoken";
-import { token } from "morgan";
 
 class AuthService {
   private readonly secretToken;
@@ -23,15 +21,13 @@ class AuthService {
         (err, token) => {
           if (err)
             reject(
-              new Errors(HttpCode.UNATHORIZED, Message.TOKEN_CREATION_FAILED)
+              new Errors(HttpCode.UNAUTHORIZED, Message.TOKEN_CREATION_FAILED)
             );
           else resolve(token as string);
         }
       );
     });
   }
-
-
 
   public async checkAuth(token: string): Promise<Member> {
     const result: Member = (await jwt.verify(
@@ -41,9 +37,6 @@ class AuthService {
     console.log(`--[AUTH] memberNick: ${result.memberNick} ---`);
     return result;
   }
-
-
-
 }
 
 export default AuthService;
