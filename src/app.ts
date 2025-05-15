@@ -1,15 +1,15 @@
-import express from "express";
+import ConnectMongoDB from "connect-mongodb-session";
+import {MORGAN_FORMAT} from "./libs/config";
+import {T} from "./libs/types/common";
+import cookieParser from "cookie-parser";
 import cors from "cors";
+import express from "express";
+import morgan from "morgan";
 import path from "path";
 import router from "./router";
 import routerAdmin from "./router-admin";
-import morgan from "morgan";
-import cookieParser from "cookie-parser";
-import { T } from "./libs/types/common";
-import { MORGAN_FORMAT } from "./libs/config";
 //for building sessions
 import session from "express-session";
-import ConnectMongoDB from "connect-mongodb-session";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
@@ -23,9 +23,9 @@ const store = new MongoDBStore({
 const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 app.use("/uploads", express.static("./uploads"));
-app.use(express.urlencoded({ extended: true })); //htmlni handle qilish tradition api orqali
+app.use(express.urlencoded({extended: true})); //htmlni handle qilish tradition api orqali
 app.use(express.json());
-app.use(cors({ credentials: true, origin: true }));
+app.use(cors({credentials: true, origin: true}));
 app.use(cookieParser());
 app.use(morgan(MORGAN_FORMAT));
 

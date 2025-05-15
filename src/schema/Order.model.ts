@@ -1,5 +1,6 @@
-import mongoose, { Schema } from "mongoose";
-import { OrderStatus } from "../libs/enum/order.enum";
+import mongoose, {Schema} from "mongoose";
+
+import {OrderStatus} from "../libs/enum/order.enum";
 
 const orderSchema = new Schema(
   {
@@ -25,7 +26,7 @@ const orderSchema = new Schema(
       ref: "Member",
     },
   },
-  { timestamps: true }
+  {timestamps: true}
 );
 
 export default mongoose.model("Order", orderSchema);
