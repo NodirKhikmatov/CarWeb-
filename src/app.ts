@@ -60,4 +60,24 @@ app.set("view engine", "ejs");
 app.use("/admin", routerAdmin); //SSR: EJS
 app.use("/", router); //SPA, REACT
 
+// const server = http.createServer(app);
+// const io = new SocketIOServer(server, {
+//   cors: {
+//     origin: true,
+//     credentials: true,
+//   },
+// });
+
+// let summaryClient = 0;
+// io.on("connection", (socket) => {
+//   summaryClient++;
+//   4;
+//   console.log(`Connection & total [${summaryClient}]`);
+
+//   socket.on("disconnect", () => {
+//     summaryClient--;
+//     console.log(`Disconnection & total [${summaryClient}]`);
+//   });
+// });
+
 export default app;
