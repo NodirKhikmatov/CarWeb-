@@ -1,7 +1,8 @@
-import { Session } from ".express-session";
-import { Request } from "express";
-import { MemberStatus, MemberType } from "../enum/member.enum";
-import { ObjectId } from "mongoose";
+import {MemberStatus, MemberType} from "../enum/member.enum";
+
+import {ObjectId} from "mongoose";
+import {Request} from "express";
+import {Session} from "express-session";
 
 export interface Member {
   _id: ObjectId;
@@ -53,7 +54,7 @@ export interface ExtendedRequest extends Request {
 
 export interface AdminRequest extends Request {
   member?: Member;
-  session: Session & { member: Member };
+  session: Session & {member: Member};
   file: Express.Multer.File;
   files: Express.Multer.File[];
 }

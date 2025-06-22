@@ -1,30 +1,21 @@
-import dotenv from "dotenv";
-dotenv.config();
+import "./env"; // <-- run dotenv config first
 
-import mongoose from "mongoose";
 import app from "./app";
+import mongoose from "mongoose";
 
-mongoose
-  .connect(process.env.MONGO_URL as string, {})
+// rest of your server code here
+
+
+if (!process.env.MONGO_URI) {
+  console.error("MONGO_URI is missing");
+  process.exit(1);
+}
+
+mongoose.connect(process.env.MONGO_URI as string,{})
   .then((data) => {
-    console.log("MongoDb connection succeed");
     const PORT = process.env.PORT ?? 3003;
-    app.listen(PORT, function () {
-      console.info(`the server is running succesfully on port: ${PORT}`);
-      console.info(`Admin project on http://localhost:${PORT}/admin \n`);
+    app.listen(PORT, () => {
+      console.log(`Server started on port ${PORT}`);
     });
   })
-  .catch((err) => console.log("ERROR on connection MongoDB", err));
-
-// console.log("PORT:", process.env.PORT);
-// console.log("MONGO_URL:", process.env.MONGO_URL);
-
-// console.log("executed");
-
-// import moment from 'moment'
-
-// const currentTime = moment().format("YYYY MM DD");
-// console.log(currentTime);
-
-// const person: string = "Martin";
-// const count: number = 100;
+  .catch(console.error);

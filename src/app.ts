@@ -2,6 +2,7 @@ import ConnectMongoDB from "connect-mongodb-session";
 import {MORGAN_FORMAT} from "./libs/config";
 import {T} from "./libs/types/common";
 import cookieParser from "cookie-parser";
+//@ts-ignore
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
@@ -13,7 +14,7 @@ import session from "express-session";
 
 const MongoDBStore = ConnectMongoDB(session);
 const store = new MongoDBStore({
-  uri: String(process.env.MONGO_URL),
+  uri: String(process.env.MONGO_URI),
   collection: "sessions", //mongo collection
 });
 

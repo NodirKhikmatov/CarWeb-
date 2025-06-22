@@ -1,9 +1,10 @@
-import { ObjectId } from "mongoose";
 import {
   ProductCollection,
   ProductSize,
   ProductStatus,
 } from "../enum/product.enum";
+
+import {ObjectId} from "mongoose";
 
 export interface Product {
   _id: ObjectId;
@@ -17,7 +18,9 @@ export interface Product {
   productDesc?: string;
   productImages: string[];
   productViews: number;
+  // @ts-ignore
   createdAt: Data;
+  // @ts-ignore
   updatedAt: Data;
 }
 export interface ProductInput {
